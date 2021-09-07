@@ -6,7 +6,7 @@ from pathlib import Path
 import requests
 import json
 
-webhook = "https://discord.com/api/webhooks/871428519253667881/NUarpr978Rlp4ZR7RwjzEhWl2s1i5IheJZbcZaHmSyXFsTAo1vBXOCGS2ky8065K1v8F"
+webhook = "Your Webhook URL"
 
 home = Path.home()
 path = str(home)
