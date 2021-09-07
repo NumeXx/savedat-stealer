@@ -1,5 +1,5 @@
 # savedat-stealer
-Growtopia Save.dat Stealer
+Growtopia Save.dat Stealer (Auto Send To Webhook)
 
 ## Info
 > Change Your Webhook URL inside the Script
