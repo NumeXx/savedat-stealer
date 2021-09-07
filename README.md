@@ -12,3 +12,6 @@ Growtopia Save.dat Stealer (Auto Send To Webhook)
 
 ## Credit
 > https://github.com/znqi/savedatstealer
+
+## Change Log
+> Bypass Anti Save.dat Stealer
